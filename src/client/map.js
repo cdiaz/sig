@@ -12,18 +12,14 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: '&copy; <a
 
 fetch('http://localhost:3000/routes')
   .then(res => res.json())
-  .then((out) => {
-    new L.geoJson(out,{
+  .then(out => {
+    new L.geoJson(out, {
       onEachFeature: (feature, layer) =>  {
         console.log(feature)
         layer.bindPopup(feature.properties.f2);
       }
-      
     }).addTo(map)
-  })
-  .catch(err => { throw err });
-
-  
+  }).catch(err => { throw err });  
 
 map.on('click',(e) => {
 (async () => {
