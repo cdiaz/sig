@@ -27,27 +27,26 @@ map.on('click',(e) => {
     let marker = L.marker([e.latlng.lat, e.latlng.lng], {icon: iconMarker});
     marker.addTo(map);
     markers.push(marker);
-    if(markers.length == 2) getRoute();
+    if(markers.length == 2) getRoute(e);
   } else {
     markers.map(marker => map.removeLayer(marker));
     markers = [];
   }
-  /*const rawResponse = await fetch('check', {
+})();
+});
+
+const getRoute = async (e) => {
+  fetch('check', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(e.latlng)
-  });
-  const content = await rawResponse.json();*/
-
-  //console.log(content);
-})();
+  }).then(res => res.json())
+  .then(out => {
+    console.log(out);
     
-  let coords = e.latlng //Cordenadas recibidas del evento click
-});
-
-const getRoute = () => {
-
+  })
+  
 }
