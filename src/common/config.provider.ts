@@ -14,6 +14,5 @@ export const Config = {
         }  
 	  }
     return Config
-  },
-  
+  }
 };
