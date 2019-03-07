@@ -7,6 +7,7 @@ const iconMarker = L.icon({
 });
 const map = L.map('map',{ center: [1.6157198,-75.6063165], zoom: 14});
 var markers = [];
+var layers = [];
 
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(map);
 
@@ -15,7 +16,9 @@ fetch('http://localhost:3000/routes')
   .then(out => {
     new L.geoJson(out, {
       onEachFeature: (feature, layer) =>  {
-        console.log(feature)
+        layers.push(layer);
+        for (const item in layer._layers) 
+          layer._layers[item].options.color = 'green'; 
         layer.bindPopup(feature.properties.f2);
       }
     }).addTo(map)
@@ -45,8 +48,15 @@ const getRoute = async (e) => {
     body: JSON.stringify(e.latlng)
   }).then(res => res.json())
   .then(out => {
-    console.log(out);
-    
+    layers.map(layer => {
+      if(layer.feature.properties.f1 == out.id){
+        for (const item in layer._layers) 
+          layer._layers[item].setStyle({ color: "#ff0000" })
+      } else {
+        for (const item in layer._layers) 
+          layer._layers[item].setStyle({ color: "green" })
+      }
+    });
   })
   
 }
