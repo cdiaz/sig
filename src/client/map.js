@@ -34,6 +34,7 @@ map.on('click',(e) => {
   } else {
     markers.map(marker => map.removeLayer(marker));
     markers = [];
+    document.getElementById("rutas").innerHTML = "";
   }
 })();
 });
@@ -48,6 +49,11 @@ const getRoute = async (e) => {
     body: JSON.stringify(e.latlng)
   }).then(res => res.json())
   .then(out => {
+    var node = document.createElement("div");                 // Create a <li> node
+    var textnode = document.createTextNode(`${out.id} ${out.name}` );         // Create a text node
+    node.appendChild(textnode);                              // Append the text to <li>
+    document.getElementById("rutas").appendChild(node);
+
     layers.map(layer => {
       if(layer.feature.properties.f1 == out.id){
         for (const item in layer._layers) 

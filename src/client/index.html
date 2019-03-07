@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -8,15 +9,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,400,500,700" rel="stylesheet">
     <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 </head>
+
 <body>
-<!--[if lte IE 9]>
+    <!--[if lte IE 9]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience and security.</p>
 <![endif]-->
-<div id="map" class="map"></div>
-<script type="text/javascript" src="map.js"></script>
+    <div style="display: flex; height: 100%; ">
+        <div id="map" class="map" style="display: flex; width: 70%"></div>
+        <div style="width:30%; border-left: 1px solid #999; flex-direction: column; padding: 20px ">
+            <h3
+                style="font-size:25px;text-align: center; font-family: 'Montserrat', sans-serif; font-weight: 400; margin: 30px 0;">
+                Encuentra tu ruta</h3>
+            <span
+                style="font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 14px; color: #666">Selecciona
+                el lugar a donde quieres ir y te ubicarmos la ruta de transporte mas cercana para ti.</span>
+            <div class="card">
+                <div class="card-body card-body--course"
+                    style="    background: url(https://png.pngtree.com/svg/20160513/bus_station_572629.png) rgb(72, 176, 175);">
+                    <img _ngcontent-c7="" alt="" class="card-img"
+                        src="https://png.pngtree.com/svg/20160513/bus_station_572629.png">
+                    <div _ngcontent-c7="" class="w-100">
+                        <h5  class="card-title">Rutas</h5>
+                    </div>
+                </div>
+                <div id="rutas">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="map.js"></script>
 
 </body>
+
 </html>
